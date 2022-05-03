@@ -112,25 +112,36 @@ final class ELEMENTOR_VIDEOPOST {
 			add_action( 'admin_notices', array( $this, 'admin_notice_minimum_php_version' ) );
 			return;
 		}
-
-		function videopost_custom_post_type() {
-			register_post_type('videopost_video',
-				array(
-					'labels'      => array(
-						'name'          => __( 'Videos', 'textdomain' ),
-						'singular_name' => __( 'Video', 'textdomain' ),
-					),
-					'public'      => true,
-					'has_archive' => true,
-					'rewrite'     => array( 'slug' => 'videos' ), // my custom slug
-				)
-			);
-		}
-		add_action('init', 'videopost_custom_post_type');
+		videopost_custom_post_type();
+		meta_box_video();
 
 		// Once we get here, We have passed all validation checks so we can safely include our widgets.
 		require_once 'class-widgets.php';
 	}
+
+	function videopost_custom_post_type() {
+		register_post_type('videopost_video',
+			array(
+				'labels'      => array(
+					'name'          => __( 'Videos', 'textdomain' ),
+					'singular_name' => __( 'Video', 'textdomain' ),
+				),
+				'public'      => true,
+				'has_archive' => true,
+				'rewrite'     => array( 'slug' => 'videos' ), // my custom slug
+			)
+		);
+	}
+	add_action('init', 'videopost_custom_post_type');
+
+	function meta_box_video() {
+		add_meta_box( 'video-meta-box-id', // ID attribute of metabox
+			  'Video Embed',       // Title of metabox visible to user
+			  'meta_box_callback', // Function that prints box in wp-admin
+			  'videopost_video',              // Show box for posts, pages, custom, etc.
+			  'normal',            // Where on the page to show the box
+			  'high' );            // Priority of box in display order
+	};
 
 	/**
 	 * Admin notice
