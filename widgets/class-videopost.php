@@ -1,20 +1,19 @@
 <?php
 /**
- * Awesomesauce class.
+ * Videopost class.
  *
  * @category   Class
- * @package    ElementorAwesomesauce
+ * @package    ElementorVideopost
  * @subpackage WordPress
- * @author     Ben Marshall <me@benmarshall.me>
- * @copyright  2020 Ben Marshall
+ * @author     Michael Schultz <michael@apexrush.com>
+ * @copyright  2022 Michael Schultz
  * @license    https://opensource.org/licenses/GPL-3.0 GPL-3.0-only
- * @link       link(https://www.benmarshall.me/build-custom-elementor-widgets/,
- *             Build Custom Elementor Widgets)
+ * @link       link(https://www.apexrush.com/)
  * @since      1.0.0
  * php version 7.3.9
  */
 
-namespace ElementorAwesomesauce\Widgets;
+namespace ElementorVideopost\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -23,11 +22,11 @@ use Elementor\Controls_Manager;
 defined( 'ABSPATH' ) || die();
 
 /**
- * Awesomesauce widget class.
+ * Videopost widget class.
  *
  * @since 1.0.0
  */
-class Awesomesauce extends Widget_Base {
+class Videopost extends Widget_Base {
 	/**
 	 * Class constructor.
 	 *
@@ -37,7 +36,7 @@ class Awesomesauce extends Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'awesomesauce', plugins_url( '/assets/css/awesomesauce.css', ELEMENTOR_AWESOMESAUCE ), array(), '1.0.0' );
+		wp_register_style( 'videopost', plugins_url( '/assets/css/videopost.css', ELEMENTOR_VIDEOPOST ), array(), '1.0.0' );
 	}
 
 	/**
@@ -50,7 +49,7 @@ class Awesomesauce extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'awesomesauce';
+		return 'videopost';
 	}
 
 	/**
@@ -63,7 +62,7 @@ class Awesomesauce extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Awesomesauce', 'elementor-awesomesauce' );
+		return __( 'videopost', 'Video Post Slider' );
 	}
 
 	/**
@@ -96,12 +95,12 @@ class Awesomesauce extends Widget_Base {
 	public function get_categories() {
 		return array( 'general' );
 	}
-	
+
 	/**
 	 * Enqueue styles.
 	 */
 	public function get_style_depends() {
-		return array( 'awesomesauce' );
+		return array( 'videopost' );
 	}
 
 	/**
@@ -117,34 +116,34 @@ class Awesomesauce extends Widget_Base {
 		$this->start_controls_section(
 			'section_content',
 			array(
-				'label' => __( 'Content', 'elementor-awesomesauce' ),
+				'label' => __( 'Content', 'elementor-videopost' ),
 			)
 		);
 
 		$this->add_control(
 			'title',
 			array(
-				'label'   => __( 'Title', 'elementor-awesomesauce' ),
+				'label'   => __( 'Title', 'elementor-videopost' ),
 				'type'    => Controls_Manager::TEXT,
-				'default' => __( 'Title', 'elementor-awesomesauce' ),
+				'default' => __( 'Title', 'elementor-videopost' ),
 			)
 		);
 
 		$this->add_control(
 			'description',
 			array(
-				'label'   => __( 'Description', 'elementor-awesomesauce' ),
+				'label'   => __( 'Description', 'elementor-videopost' ),
 				'type'    => Controls_Manager::TEXTAREA,
-				'default' => __( 'Description', 'elementor-awesomesauce' ),
+				'default' => __( 'Description', 'elementor-videopost' ),
 			)
 		);
 
 		$this->add_control(
 			'content',
 			array(
-				'label'   => __( 'Content', 'elementor-awesomesauce' ),
+				'label'   => __( 'Content', 'elementor-videopost' ),
 				'type'    => Controls_Manager::WYSIWYG,
-				'default' => __( 'Content', 'elementor-awesomesauce' ),
+				'default' => __( 'Content', 'elementor-videopost' ),
 			)
 		);
 

@@ -3,18 +3,17 @@
  * Widgets class.
  *
  * @category   Class
- * @package    ElementorAwesomesauce
+ * @package    ElementorVideopost
  * @subpackage WordPress
- * @author     Ben Marshall <me@benmarshall.me>
- * @copyright  2020 Ben Marshall
+ * @author     Michael Schultz <michael@apexrush.com>
+ * @copyright  2022 Michael Schultz
  * @license    https://opensource.org/licenses/GPL-3.0 GPL-3.0-only
- * @link       link(https://www.benmarshall.me/build-custom-elementor-widgets/,
- *             Build Custom Elementor Widgets)
+ * @link       link(https://www.apexrush.com/)
  * @since      1.0.0
  * php version 7.3.9
  */
 
-namespace ElementorAwesomesauce;
+namespace ElementorVideopost;
 
 // Security Note: Blocks direct access to the plugin PHP files.
 defined( 'ABSPATH' ) || die();
@@ -66,7 +65,7 @@ class Widgets {
 	 * @access private
 	 */
 	private function include_widgets_files() {
-		require_once 'widgets/class-awesomesauce.php';
+		require_once 'widgets/class-videopost.php';
 	}
 
 	/**
@@ -82,7 +81,7 @@ class Widgets {
 		$this->include_widgets_files();
 
 		// Register the plugin widget classes.
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Awesomesauce() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Videopost() );
 	}
 
 	/**

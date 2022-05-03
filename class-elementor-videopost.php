@@ -1,15 +1,14 @@
 <?php
 /**
- * Elementor_Awesomesauce class.
+ * ELEMENTOR_VIDEOPOST class.
  *
  * @category   Class
- * @package    ElementorAwesomesauce
+ * @package    ElementorVideopost
  * @subpackage WordPress
- * @author     Ben Marshall <me@benmarshall.me>
- * @copyright  2020 Ben Marshall
+ * @author     Michael Schultz <michael@apexrush.com>
+ * @copyright  2022 Michael Schultz
  * @license    https://opensource.org/licenses/GPL-3.0 GPL-3.0-only
- * @link       link(https://www.benmarshall.me/build-custom-elementor-widgets/,
- *             Build Custom Elementor Widgets)
+ * @link       link(https://www.apexrush.com/)
  * @since      1.0.0
  * php version 7.3.9
  */
@@ -20,16 +19,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Main Elementor Awesomesauce Class
+ * Main Elementor Videopost Class
  *
- * The init class that runs the Elementor Awesomesauce plugin.
+ * The init class that runs the Elementor Videopost plugin.
  * Intended To make sure that the plugin's minimum requirements are met.
  *
  * You should only modify the constants to match your plugin's needs.
  *
  * Any custom code should go inside Plugin Class in the plugin.php file.
  */
-final class Elementor_Awesomesauce {
+final class ELEMENTOR_VIDEOPOST {
 
 	/**
 	 * Plugin Version
@@ -79,7 +78,7 @@ final class Elementor_Awesomesauce {
 	 * @access public
 	 */
 	public function i18n() {
-		load_plugin_textdomain( 'elementor-awesomesauce' );
+		load_plugin_textdomain( 'elementor-videopost' );
 	}
 
 	/**
@@ -114,6 +113,21 @@ final class Elementor_Awesomesauce {
 			return;
 		}
 
+		function videopost_custom_post_type() {
+			register_post_type('videopost_video',
+				array(
+					'labels'      => array(
+						'name'          => __( 'Videos', 'textdomain' ),
+						'singular_name' => __( 'Video', 'textdomain' ),
+					),
+					'public'      => true,
+					'has_archive' => true,
+					'rewrite'     => array( 'slug' => 'videos' ), // my custom slug
+				)
+			);
+		}
+		add_action('init', 'videopost_custom_post_type');
+
 		// Once we get here, We have passed all validation checks so we can safely include our widgets.
 		require_once 'class-widgets.php';
 	}
@@ -127,7 +141,7 @@ final class Elementor_Awesomesauce {
 	 * @access public
 	 */
 	public function admin_notice_missing_main_plugin() {
-		deactivate_plugins( plugin_basename( ELEMENTOR_AWESOMESAUCE ) );
+		deactivate_plugins( plugin_basename( ELEMENTOR_VIDEOPOST ) );
 
 		return sprintf(
 			wp_kses(
@@ -140,7 +154,7 @@ final class Elementor_Awesomesauce {
 					),
 				)
 			),
-			'Elementor Awesomesauce',
+			'Elementor Videopost',
 			'Elementor'
 		);
 	}
@@ -154,7 +168,7 @@ final class Elementor_Awesomesauce {
 	 * @access public
 	 */
 	public function admin_notice_minimum_elementor_version() {
-		deactivate_plugins( plugin_basename( ELEMENTOR_AWESOMESAUCE ) );
+		deactivate_plugins( plugin_basename( ELEMENTOR_VIDEOPOST ) );
 
 		return sprintf(
 			wp_kses(
@@ -167,7 +181,7 @@ final class Elementor_Awesomesauce {
 					),
 				)
 			),
-			'Elementor Awesomesauce',
+			'Elementor Videopost',
 			'Elementor',
 			self::MINIMUM_ELEMENTOR_VERSION
 		);
@@ -182,7 +196,7 @@ final class Elementor_Awesomesauce {
 	 * @access public
 	 */
 	public function admin_notice_minimum_php_version() {
-		deactivate_plugins( plugin_basename( ELEMENTOR_AWESOMESAUCE ) );
+		deactivate_plugins( plugin_basename( ELEMENTOR_VIDEOPOST ) );
 
 		return sprintf(
 			wp_kses(
@@ -195,12 +209,12 @@ final class Elementor_Awesomesauce {
 					),
 				)
 			),
-			'Elementor Awesomesauce',
+			'Elementor Videopost',
 			'Elementor',
 			self::MINIMUM_ELEMENTOR_VERSION
 		);
 	}
 }
 
-// Instantiate Elementor_Awesomesauce.
-new Elementor_Awesomesauce();
+// Instantiate ELEMENTOR_VIDEOPOST.
+new ELEMENTOR_VIDEOPOST();
